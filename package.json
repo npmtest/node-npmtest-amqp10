@@ -1,1 +1,39 @@
-{     "devDependencies": {         "electron-lite": "kaizhu256/node-electron-lite#alpha",         "utility2": "kaizhu256/node-utility2#alpha"     },     "name":"npmtest-amqp10",     "homepage": "https://github.com/npmtest/node-npmtest-amqp10",     "repository": {         "type": "git",         "url": "https://github.com/npmtest/node-npmtest-amqp10.git"     },     "scripts": {         "build-ci": "utility2 shReadmeTest build_ci.sh"     },     "version": "0.0.1" }
+{
+    "author": "kai zhu <kaizhu256@gmail.com>",
+    "description": "#### basic test coverage for  [amqp10 (v3.5.2)](https://github.com/noodlefrenzy/node-amqp10)  [![npm package](https://img.shields.io/npm/v/npmtest-amqp10.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-amqp10) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-amqp10.svg)](https://travis-ci.org/npmtest/node-npmtest-amqp10)",
+    "devDependencies": {
+        "electron-lite": "kaizhu256/node-electron-lite#alpha",
+        "utility2": "kaizhu256/node-utility2#alpha"
+    },
+    "engines": {
+        "node": ">=4.0"
+    },
+    "homepage": "https://github.com/npmtest/node-npmtest-amqp10",
+    "keywords": [
+        "coverage",
+        "test",
+        "amqp10"
+    ],
+    "license": "MIT",
+    "main": "lib.npmtest_amqp10.js",
+    "name": "npmtest-amqp10",
+    "nameAlias": "npmtest_amqp10",
+    "nameOriginal": "npmtest-amqp10",
+    "os": [
+        "darwin",
+        "linux"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/npmtest/node-npmtest-amqp10.git"
+    },
+    "scripts": {
+        "build-ci": "utility2 shReadmeTest build_ci.sh",
+        "env": "env",
+        "heroku-postbuild": "npm install \"kaizhu256/node-utility2#alpha\" && utility2 shDeployHeroku",
+        "postinstall": "[ ! -f npm_scripts.sh ] || ./npm_scripts.sh postinstall",
+        "start": "PORT=${PORT:-8080} utility2 start test.js",
+        "test": "(set -e; export PORT=$(utility2 shServerPortRandom); utility2 test test.js)"
+    },
+    "version": "2017.4.24"
+}
