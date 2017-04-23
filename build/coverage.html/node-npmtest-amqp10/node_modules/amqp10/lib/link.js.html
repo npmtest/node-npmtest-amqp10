@@ -1,0 +1,1049 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-amqp10/node_modules/amqp10/lib/link.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-amqp10">npmtest-amqp10 (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-amqp10/node_modules/amqp10/lib/link.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">16.41% <small>(21 / 128)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 51)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 25)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">17.5% <small>(21 / 120)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-amqp10/node_modules/amqp10/lib/</a> &#187; link.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var EventEmitter = require('events').EventEmitter,
+    Promise = require('bluebird'),
+    util = require('util'),
+&nbsp;
+    StateMachine = require('stately.js'),
+&nbsp;
+    debug = require('debug')('amqp10:link'),
+    u = require('./utilities'),
+    frames = require('./frames'),
+    errors = require('./errors');
+&nbsp;
+var stateMachine = <span class="fstat-no" title="function not covered" >function(link) {</span>
+<span class="cstat-no" title="statement not covered" >  var detachHandler = <span class="fstat-no" title="function not covered" >function(frame) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (this.getMachineState() === 'ATTACHED') {</span>
+<span class="cstat-no" title="statement not covered" >      this.ATTACHED.sendDetach({ closed: frame.closed });</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    link._detached(frame);</span>
+<span class="cstat-no" title="statement not covered" >    return this.DETACHED;</span>
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var states = {</span>
+    'DETACHED': {
+      sendAttach: 'ATTACHING',
+      reattach: 'REATTACHING'
+    },
+    'ATTACHING': { attachReceived: 'ATTACHED' },
+    'REATTACHING': { attachReceived: 'ATTACHED' },
+    'ATTACHED': {
+      sendDetach: <span class="fstat-no" title="function not covered" >function(options) {</span>
+<span class="cstat-no" title="statement not covered" >        link._sendDetach(options);</span>
+<span class="cstat-no" title="statement not covered" >        return this.DETACHING;</span>
+      },
+    },
+    'DETACHING': { detached: 'DETACHED' }
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  Object.keys(states).forEach(<span class="fstat-no" title="function not covered" >function(s) {</span></span>
+<span class="cstat-no" title="statement not covered" >    states[s].forceDetach = 'DETACHED';</span>
+<span class="cstat-no" title="statement not covered" >    states[s].detachReceived = detachHandler;</span>
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return states;</span>
+};
+&nbsp;
+&nbsp;
+/**
+ * @class
+ * @extends EventEmitter
+ * @fires Link#errorReceived
+ * @fires Link#attached
+ * @fires Link#detached
+ */
+<span class="fstat-no" title="function not covered" >function Link(session, handle, linkPolicy) {</span>
+<span class="cstat-no" title="statement not covered" >  this.policy = linkPolicy;</span>
+<span class="cstat-no" title="statement not covered" >  this.session = session;</span>
+<span class="cstat-no" title="statement not covered" >  this.handle = handle;</span>
+<span class="cstat-no" title="statement not covered" >  this.remote = { handle: undefined };</span>
+<span class="cstat-no" title="statement not covered" >  this.deliveryCount = 0;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this._onAttach = [];</span>
+<span class="cstat-no" title="statement not covered" >  if (this.policy &amp;&amp; this.policy.reattach) {</span>
+<span class="cstat-no" title="statement not covered" >    this._timeouts = u.generateTimeouts(this.policy.reattach);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+<span class="cstat-no" title="statement not covered" >  this.sm = new StateMachine(stateMachine(this));</span>
+<span class="cstat-no" title="statement not covered" >  this.sm.bind(<span class="fstat-no" title="function not covered" >function(event, oldState, newState) {</span></span>
+<span class="cstat-no" title="statement not covered" >    debug('stateChange(' + self.id + '):', oldState, '=&gt;', newState, ', reason:', event);</span>
+  });
+}
+&nbsp;
+util.inherits(Link, EventEmitter);
+&nbsp;
+/**
+ * Error received event
+ *
+ * @event Link#errorReceived
+ * @param {object} error the received error
+ */
+Link.ErrorReceived = 'errorReceived';
+&nbsp;
+/**
+ * Attached event
+ *
+ * @event Link#attached
+ */
+Link.Attached = 'attached';
+&nbsp;
+/**
+ * Detached event
+ *
+ * @event Link#detached
+ */
+Link.Detached = 'detached';
+&nbsp;
+// public api
+&nbsp;
+/**
+ * Detach the link from the session
+ *
+ * @inner @memberof Link
+ * @param {object} [options] detach frame options
+ * @return {Promise}
+ */
+Link.prototype.detach = <span class="fstat-no" title="function not covered" >function(options) {</span>
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+<span class="cstat-no" title="statement not covered" >  this._timeouts = undefined; </span>// Disable any re-attachment policy.
+<span class="cstat-no" title="statement not covered" >  var detachPromise = new Promise(<span class="fstat-no" title="function not covered" >function(resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" >    var onError = <span class="fstat-no" title="function not covered" >function(err) {</span> <span class="cstat-no" title="statement not covered" >reject(err); </span>};</span>
+<span class="cstat-no" title="statement not covered" >    self.once(Link.ErrorReceived, onError);</span>
+<span class="cstat-no" title="statement not covered" >    self.once(Link.Detached, <span class="fstat-no" title="function not covered" >function(info) {</span></span>
+<span class="cstat-no" title="statement not covered" >      self.removeListener(Link.ErrorReceived, onError);</span>
+<span class="cstat-no" title="statement not covered" >      if (!!info.error) <span class="cstat-no" title="statement not covered" >return reject(info.error);</span></span>
+<span class="cstat-no" title="statement not covered" >      if (!info.closed) {</span>
+<span class="cstat-no" title="statement not covered" >        if (!options || options.closed) {</span>
+<span class="cstat-no" title="statement not covered" >          return reject('link not closed');</span>
+        }
+      }
+<span class="cstat-no" title="statement not covered" >      resolve();</span>
+    });
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this.sm.sendDetach(options);</span>
+<span class="cstat-no" title="statement not covered" >  return detachPromise;</span>
+};
+&nbsp;
+// private api
+Link.prototype.state = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >  return this.sm.getMachineState().toLowerCase();</span>
+};
+&nbsp;
+Object.defineProperty(Link.prototype, 'id', {
+  get: <span class="fstat-no" title="function not covered" >function() {</span> <span class="cstat-no" title="statement not covered" >return this.name + ':' + this.handle; </span>}
+});
+&nbsp;
+Link.prototype.attach = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >  this.sm.sendAttach();</span>
+<span class="cstat-no" title="statement not covered" >  var attachFrame = new frames.AttachFrame(this.policy.attach);</span>
+<span class="cstat-no" title="statement not covered" >  attachFrame.channel = this.session.channel;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this.name = attachFrame.name;</span>
+<span class="cstat-no" title="statement not covered" >  this.role = attachFrame.role;</span>
+<span class="cstat-no" title="statement not covered" >  this.linkCredit = 0;</span>
+<span class="cstat-no" title="statement not covered" >  this.available = 0;</span>
+<span class="cstat-no" title="statement not covered" >  this.drain = false;</span>
+<span class="cstat-no" title="statement not covered" >  this.session.connection.sendFrame(attachFrame);</span>
+};
+&nbsp;
+///
+/// Force link state to detached without sending detach message - usually due to forcible disconnect or unmap from above.
+/// Important bit is that this should not trigger auto-reattach behavior as that'll happen with reconnect.
+///
+Link.prototype.forceDetach = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >  var state = this.state();</span>
+<span class="cstat-no" title="statement not covered" >  if (state !== 'attached' &amp;&amp; state !== 'attaching' &amp;&amp; state !== 'reattaching') {</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  debug('forceDetach(' + this.id + '): current state:', state);</span>
+<span class="cstat-no" title="statement not covered" >  if (!!this._reattachTimer) <span class="cstat-no" title="statement not covered" >clearTimeout(this._reattachTimer);</span></span>
+<span class="cstat-no" title="statement not covered" >  this.sm.forceDetach();</span>
+<span class="cstat-no" title="statement not covered" >  this.emit(Link.Detached, {</span>
+    closed: true,
+    error: new errors.ProtocolError('amqp:link:detach-forced', 'detach-forced')
+  });
+};
+&nbsp;
+Link.prototype._resolveAttachPromises = <span class="fstat-no" title="function not covered" >function(err, link) {</span>
+<span class="cstat-no" title="statement not covered" >  for (var i = 0; i &lt; this._onAttach.length; ++i) {</span>
+<span class="cstat-no" title="statement not covered" >    var attachPromise = this._onAttach[i];</span>
+<span class="cstat-no" title="statement not covered" >    attachPromise(err, link);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this._onAttach = [];</span>
+};
+&nbsp;
+Link.prototype._attachReceived = <span class="fstat-no" title="function not covered" >function(attachFrame) {</span>
+<span class="cstat-no" title="statement not covered" >  this.sm.attachReceived();</span>
+&nbsp;
+  // process params.
+<span class="cstat-no" title="statement not covered" >  this.remote.handle = attachFrame.handle;</span>
+<span class="cstat-no" title="statement not covered" >  this.remote.attach = attachFrame;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this.session._linksByRemoteHandle[this.remote.handle] = this;</span>
+<span class="cstat-no" title="statement not covered" >  debug(this.name + ': attached CH=[' + this.session.channel + '=&gt;' + attachFrame.channel + '], Handle=[' + this.handle + '=&gt;' + attachFrame.handle + ']');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this.emit(Link.Attached, this);</span>
+<span class="cstat-no" title="statement not covered" >  this._resolveAttachPromises(null, this);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this._checkCredit({ initial: true });</span>
+};
+&nbsp;
+// default implementation does nothing
+Link.prototype._checkCredit = <span class="fstat-no" title="function not covered" >function() {</span>};
+Link.prototype.flow = <span class="fstat-no" title="function not covered" >function(options) {</span>
+<span class="cstat-no" title="statement not covered" >  options = options || {};</span>
+<span class="cstat-no" title="statement not covered" >  var flowOptions = u.defaults(options, {</span>
+    channel: this.session.channel,
+    handle: this.handle,
+    linkCredit: this.linkCredit,
+    nextIncomingId: this.session._sessionParams.nextIncomingId,
+    incomingWindow: this.session._sessionParams.incomingWindow,
+    nextOutgoingId: this.session._sessionParams.nextOutgoingId,
+    outgoingWindow: this.session._sessionParams.outgoingWindow,
+    available: this.available,
+    deliveryCount: this.deliveryCount,
+    drain: false
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this.session.connection.sendFrame(new frames.FlowFrame(flowOptions));</span>
+};
+&nbsp;
+Link.prototype._sendDetach = <span class="fstat-no" title="function not covered" >function(options) {</span>
+<span class="cstat-no" title="statement not covered" >  options = options || {};</span>
+<span class="cstat-no" title="statement not covered" >  var detachoptions = u.defaults(options, {</span>
+    handle: this.handle,
+    channel: this.session.channel,
+    closed: true,
+    error: null
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this.session.connection.sendFrame(new frames.DetachFrame(detachoptions));</span>
+};
+&nbsp;
+Link.prototype._detached = <span class="fstat-no" title="function not covered" >function(frame) {</span>
+<span class="cstat-no" title="statement not covered" >  if (frame &amp;&amp; frame.error) {</span>
+<span class="cstat-no" title="statement not covered" >    this.emit(Link.ErrorReceived, errors.wrapProtocolError(frame.error));</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this.remote.detach = frame;</span>
+<span class="cstat-no" title="statement not covered" >  if (this.remote.handle !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >    delete this.session._linksByRemoteHandle[this.remote.handle];</span>
+<span class="cstat-no" title="statement not covered" >    this.remote.handle = undefined;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this.emit(Link.Detached, { closed: frame.closed, error: errors.wrapProtocolError(frame.error) });</span>
+<span class="cstat-no" title="statement not covered" >  this._resolveAttachPromises(frame.error ? frame.error : 'link closed');</span>
+<span class="cstat-no" title="statement not covered" >  this.sm.detached();</span>
+&nbsp;
+  // now check for whether we should reattach
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+<span class="cstat-no" title="statement not covered" >  if (self.shouldReattach()) {</span>
+<span class="cstat-no" title="statement not covered" >    process.nextTick(<span class="fstat-no" title="function not covered" >function() {</span> <span class="cstat-no" title="statement not covered" >self._attemptReattach(); </span>});</span>
+  }
+};
+&nbsp;
+Link.prototype.shouldReattach = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >  if (this.session &amp;&amp; !this.session.mapped) <span class="cstat-no" title="statement not covered" >return false;</span></span>
+<span class="cstat-no" title="statement not covered" >  if (!this.session || !this._timeouts) <span class="cstat-no" title="statement not covered" >return false;</span></span>
+<span class="cstat-no" title="statement not covered" >  if (!this._timeouts.length &amp;&amp; !this.policy.reattach.forever) <span class="cstat-no" title="statement not covered" >return false;</span></span>
+<span class="cstat-no" title="statement not covered" >  return true;</span>
+};
+&nbsp;
+Link.prototype._attemptReattach = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+<span class="cstat-no" title="statement not covered" >  if (!self._timeouts.length) {</span>
+<span class="cstat-no" title="statement not covered" >    self._timeouts = u.generateTimeouts(self.policy.reattach);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  self.sm.reattach();</span>
+<span class="cstat-no" title="statement not covered" >  self._reattachTimer = setTimeout(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (self.shouldReattach()) {</span>
+<span class="cstat-no" title="statement not covered" >      debug('attempting to reattach: ' + self.id);</span>
+<span class="cstat-no" title="statement not covered" >      self.attach();</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      process.nextTick(<span class="fstat-no" title="function not covered" >function() {</span> <span class="cstat-no" title="statement not covered" >self._attemptReattach(); </span>});</span>
+    }
+  }, self._timeouts.shift());
+};
+&nbsp;
+module.exports = Link;
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Sun Apr 23 2017 05:20:17 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
